@@ -1,11 +1,13 @@
 package customfonts;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
 
+@SuppressLint("AppCompatCustomView")
 public class MyTextView_Roboto_Bold extends TextView {
 
     public MyTextView_Roboto_Bold(Context context, AttributeSet attrs, int defStyle) {

@@ -1,10 +1,12 @@
 package customfonts;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
+@SuppressLint("AppCompatCustomView")
 public class EditText_Roboto_Bold extends EditText {
 
     public EditText_Roboto_Bold(Context context, AttributeSet attrs, int defStyle) {
@@ -28,5 +30,4 @@ public class EditText_Roboto_Bold extends EditText {
             setTypeface(tf);
         }
     }
-
 }

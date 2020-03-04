@@ -19,7 +19,6 @@ CategoryPagerAdapter extends FragmentStatePagerAdapter {
         this.mNumOfTabs = NumOfTabs;
     }
 
-
     @Override
     public Fragment getItem(int position) {
 

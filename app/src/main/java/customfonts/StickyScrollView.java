@@ -77,8 +77,6 @@ public class StickyScrollView extends ScrollView {
 		super(context, attrs, defStyle);
 		setup();
 
-		
-
 		TypedArray a = context.obtainStyledAttributes(attrs,
 		        R.styleable.StickyScrollView, defStyle, 0);
 
@@ -394,7 +392,6 @@ public class StickyScrollView extends ScrollView {
 			v.startAnimation(anim);
 		}
 	}
-
 
 	public void setShadowDrawable(Drawable drawable) {
 	}

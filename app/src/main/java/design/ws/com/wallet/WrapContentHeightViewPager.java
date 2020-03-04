@@ -18,13 +18,11 @@ public class WrapContentHeightViewPager extends ViewPager {
     public WrapContentHeightViewPager(Context context) {
         super(context);
         this.enabled = true;
-
     }
 
     public WrapContentHeightViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.enabled = true;
-
     }
 
     @Override
@@ -43,17 +41,13 @@ public class WrapContentHeightViewPager extends ViewPager {
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (this.enabled) {
             return super.onTouchEvent(event);
-
         }
-
         return false;
     }
 
@@ -62,12 +56,10 @@ public class WrapContentHeightViewPager extends ViewPager {
         if (this.enabled) {
             return super.onInterceptTouchEvent(event);
         }
-
         return false;
     }
 
     public void setPagingEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
 }
