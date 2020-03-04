@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Wallet</string>
+    <string name="activity_wallet">Reypay Wallet</string>
+    <string name="activity_username">Nobody</string>
+    <string name="acitvity_money">RDP</string>
+    <string name="activity_dollors">0.0</string>
+    <string name="activity_account">帳戶</string>
+    <string name="activity_trans">**** **** **** 4518</string>
 </resources>

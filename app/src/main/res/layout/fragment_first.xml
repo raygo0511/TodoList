@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:scrollbars="none">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,6 +19,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
@@ -46,10 +46,11 @@
                     android:background="@drawable/red_rect"
                     android:gravity="center_horizontal" />
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/men" />
 
@@ -57,16 +58,18 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Delivered to James"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:text="-1,20,520.00"
                     android:textColor="#dd0000"
@@ -88,10 +91,11 @@
                     android:background="@drawable/red_rect"
                     android:gravity="center_horizontal" />
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/men" />
 
@@ -99,25 +103,28 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Delivered to James"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:text="-1,20,520.00"
                     android:textColor="#dd0000"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="25dp"
                 android:orientation="vertical">
@@ -134,7 +141,6 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/white"
-
                 android:orientation="horizontal">
 
                 <View
@@ -150,20 +156,22 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Transfer to Honey"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:text="-1,20,520.00"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -171,7 +179,6 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/white"
-
                 android:orientation="horizontal">
 
                 <View
@@ -182,32 +189,32 @@
                     android:background="@drawable/green_rect"
                     android:gravity="center_horizontal" />
 
-
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Transfer to Honey"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:text="-1,20,520.00"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical">
@@ -234,10 +241,11 @@
                     android:background="@drawable/red_rect"
                     android:gravity="center_horizontal" />
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/men" />
 
@@ -245,20 +253,22 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Delivered to James"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:text="-1,20,520.00"
                     android:textColor="#dd0000"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -276,10 +286,11 @@
                     android:background="@drawable/red_rect"
                     android:gravity="center_horizontal" />
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:src="@drawable/men" />
 
@@ -287,25 +298,28 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Delivered to James"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:text="-1,20,520.00"
                     android:textColor="#dd0000"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="25dp"
                 android:orientation="vertical">
@@ -322,7 +336,6 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/white"
-
                 android:orientation="horizontal">
 
                 <View
@@ -333,25 +346,26 @@
                     android:background="@drawable/green_rect"
                     android:gravity="center_horizontal" />
 
-
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Transfer to Honey"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:text="-1,20,520.00"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -359,7 +373,6 @@
                 android:layout_height="55dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/white"
-
                 android:orientation="horizontal">
 
                 <View
@@ -370,30 +383,27 @@
                     android:background="@drawable/green_rect"
                     android:gravity="center_horizontal" />
 
-
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Transfer to Honey"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
 
                 <customfonts.MyTextView_Roboto_Regular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:text="-1,20,520.00"
                     android:textColor="#878787"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
-
         </LinearLayout>
-
     </android.support.v4.widget.NestedScrollView>
-
-
 </LinearLayout>
