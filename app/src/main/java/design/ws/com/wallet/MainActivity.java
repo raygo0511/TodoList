@@ -2,18 +2,24 @@ package design.ws.com.wallet;
 
 import android.graphics.Typeface;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import customfonts.MyTextView_Roboto_Medium;
+import gomobile4wallet.Gomobile4wallet;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private WrapContentHeightViewPager viewPager;
     Typeface mTypeface;
+    Button mSubmit;
 
 
     @Override
@@ -22,18 +28,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        //setToolbar();
+        MyTextView_Roboto_Medium wallet_account = findViewById(R.id.wallet_trans);
+        mSubmit = findViewById(R.id.wallet_submit);
+        String token;
+        String result = null;
+        try {
+            token = Gomobile4wallet.fnNewWallet();
+            result = Gomobile4wallet.getWalletAddress(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        wallet_account.setText(result);
+        mSubmit.setOnClickListener(onSubmitClick);
 
+        //setToolbar();
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
 
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-        tabLayout.addTab(tabLayout.newTab().setText("All"));
-        tabLayout.addTab(tabLayout.newTab().setText("Recieved"));
-        tabLayout.addTab(tabLayout.newTab().setText("Sent"));
-
-
-
+        tabLayout.addTab(tabLayout.newTab().setText("Transaction"));
 
         mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Medium.ttf");
         ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
@@ -59,9 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         viewPager.setOffscreenPageLimit(4);
-
-
-
+        
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -80,29 +91,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
     }
 
     public void setCurrentTab(int i) {
         viewPager.setCurrentItem(i);
     }
 
-//
-//    private void setToolbar(){
-//
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//
-//        setSupportActionBar(toolbar);
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null)
-//            actionBar.setDisplayHomeAsUpEnabled(false);
-//
-//        actionBar.setTitle("");
+    private View.OnClickListener onSubmitClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onDialogSubmit();
+        }
+    };
 
+    private void onDialogSubmit() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setMessage("this test")
+                .setPositiveButton("Confirm", null)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
 }
