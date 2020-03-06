@@ -54,6 +54,7 @@
                         android:layout_height="50dp">
 
                         <customfonts.MyTextView_Roboto_Bold
+                            android:id="@+id/wallet_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20sp"
@@ -62,107 +63,111 @@
                             android:text="@string/activity_wallet"
                             android:textColor="#fff"/>
                     </android.support.v7.widget.Toolbar>
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <android.support.v7.widget.CardView
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_margin="10dp"
-                        app:cardBackgroundColor="@color/card_bg"
-                        android:elevation="5dp"
-                        app:cardCornerRadius="4dp"
-                        android:layout_gravity="bottom">
+                        android:layout_height="wrap_content">
 
-                        <LinearLayout
+                        <android.support.v7.widget.CardView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginRight="25dp"
-                            android:orientation="vertical">
-
-                            <customfonts.MyTextView_Roboto_Medium
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="#192360"
-                                android:text="@string/activity_username"/>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:orientation="horizontal">
-
-                                <customfonts.MyTextView_Roboto_Medium
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/acitvity_money"
-                                    android:textColor="#fff"
-                                    android:background="@drawable/yellow_rect"
-                                    android:textSize="12sp"
-                                    android:paddingTop="2dp"
-                                    android:paddingBottom="2dp"
-                                    android:paddingRight="8dp"
-                                    android:paddingLeft="8dp"/>
-
-                                <customfonts.MyTextView_Roboto_Regular
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="20sp"
-                                    android:textColor="#192360"
-                                    android:layout_marginStart="35dp"
-                                    android:layout_marginLeft="35dp"
-                                    android:text="@string/activity_dollors"/>
-                            </LinearLayout>
+                            android:layout_height="200dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="@color/card_bg"
+                            android:elevation="5dp"
+                            app:cardCornerRadius="4dp"
+                            android:layout_gravity="bottom">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:orientation="horizontal">
+                                android:layout_marginTop="20dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="25dp"
+                                android:orientation="vertical">
 
                                 <customfonts.MyTextView_Roboto_Medium
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/activity_account"
                                     android:textColor="#192360"
-                                    android:textSize="15sp"/>
+                                    android:text="@string/activity_username"/>
 
                                 <LinearLayout
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="20dp"
-                                    android:layout_marginLeft="20dp"
-                                    android:orientation="vertical">
-
-                                <customfonts.MyTextView_Roboto_Medium
-                                    android:id="@+id/wallet_trans"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="15sp"
-                                    android:textColor="#192360"
-                                    android:text="@string/activity_trans" />
+                                    android:layout_marginTop="15dp"
+                                    android:orientation="horizontal">
+
+                                    <customfonts.MyTextView_Roboto_Medium
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/acitvity_money"
+                                        android:textColor="#fff"
+                                        android:background="@drawable/yellow_rect"
+                                        android:textSize="12sp"
+                                        android:paddingTop="2dp"
+                                        android:paddingBottom="2dp"
+                                        android:paddingRight="8dp"
+                                        android:paddingLeft="8dp"/>
+
+                                    <customfonts.MyTextView_Roboto_Regular
+                                        android:id="@+id/wallet_dollers"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="20sp"
+                                        android:textColor="#192360"
+                                        android:layout_marginStart="35dp"
+                                        android:layout_marginLeft="35dp"
+                                        android:text="@string/activity_dollors"
+                                        android:textIsSelectable="true" />
                                 </LinearLayout>
-                            </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:orientation="horizontal">
-
-                                <Button
-                                    android:id="@+id/wallet_submit"
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/activity_button"/>
+                                    android:layout_marginTop="15dp"
+                                    android:orientation="horizontal">
+
+                                    <customfonts.MyTextView_Roboto_Medium
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/activity_account"
+                                        android:textColor="#192360"
+                                        android:textSize="15sp"/>
+
+                                    <LinearLayout
+                                        android:layout_weight="1"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="20dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:orientation="vertical">
+
+                                    <customfonts.MyTextView_Roboto_Medium
+                                        android:id="@+id/wallet_trans"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15sp"
+                                        android:textColor="#192360"
+                                        android:text="@string/activity_trans"
+                                        android:textIsSelectable="true" />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+    <!--                            <LinearLayout-->
+    <!--                                android:layout_width="match_parent"-->
+    <!--                                android:layout_height="wrap_content"-->
+    <!--                                android:layout_marginTop="15dp"-->
+    <!--                                android:orientation="horizontal">-->
+
+    <!--                                <Button-->
+    <!--                                    android:id="@+id/wallet_submit"-->
+    <!--                                    android:layout_width="wrap_content"-->
+    <!--                                    android:layout_height="wrap_content"-->
+    <!--                                    android:text="@string/activity_button"/>-->
+    <!--                            </LinearLayout>-->
                             </LinearLayout>
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </FrameLayout>
+                        </android.support.v7.widget.CardView>
+                    </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

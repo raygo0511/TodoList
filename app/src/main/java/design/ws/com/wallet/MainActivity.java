@@ -1,5 +1,7 @@
 package design.ws.com.wallet;
 
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
@@ -10,8 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import customfonts.MyTextView_Roboto_Bold;
 import customfonts.MyTextView_Roboto_Medium;
+import customfonts.MyTextView_Roboto_Regular;
 import gomobile4wallet.Gomobile4wallet;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,8 +24,11 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private WrapContentHeightViewPager viewPager;
     Typeface mTypeface;
-    Button mSubmit;
-
+    MyTextView_Roboto_Regular wallet_dollers;
+    MyTextView_Roboto_Medium wallet_account;
+    String result = "";
+    String dollers = "";
+    private boolean status = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,25 +36,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        MyTextView_Roboto_Medium wallet_account = findViewById(R.id.wallet_trans);
-        mSubmit = findViewById(R.id.wallet_submit);
+        MyTextView_Roboto_Bold wallet_title = findViewById(R.id.wallet_title);
+        wallet_dollers = findViewById(R.id.wallet_dollers);
+        wallet_account = findViewById(R.id.wallet_trans);
+//        Button mSubmit = findViewById(R.id.wallet_submit);
+
         String token;
-        String result = null;
         try {
             token = Gomobile4wallet.fnNewWallet();
             result = Gomobile4wallet.getWalletAddress(token);
+            dollers = Gomobile4wallet.fnGetBalance(result);
+            dollers += " blance";
         } catch (Exception e) {
             e.printStackTrace();
         }
+        wallet_dollers.setText(dollers);
         wallet_account.setText(result);
-        mSubmit.setOnClickListener(onSubmitClick);
+        wallet_title.setOnClickListener(onReflashWalletClick);
+//        mSubmit.setOnClickListener(onSubmitClick);
 
         //setToolbar();
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
 
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Transaction"));
+        tabLayout.addTab(tabLayout.newTab().setText("Transaction_History"));
+        tabLayout.addTab(tabLayout.newTab().setText("Transaction_Sent"));
 
         mTypeface = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Medium.ttf");
         ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
@@ -69,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
         CategoryPagerAdapter adapter = new CategoryPagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
-
 
         viewPager.setOffscreenPageLimit(4);
         
@@ -97,6 +111,29 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(i);
     }
 
+    private View.OnClickListener onReflashWalletClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            String origin_token = "1QGZHSDbnoieUmT5x9RwjnaDC5dWkeDjGt";
+            String origin_dollers = "";
+            try {
+                origin_dollers = Gomobile4wallet.fnGetBalance(origin_token);
+                origin_dollers += " blance";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (!status) {
+                wallet_dollers.setText(origin_dollers);
+                wallet_account.setText(origin_token);
+                status = true;
+            } else {
+                wallet_dollers.setText(dollers);
+                wallet_account.setText(result);
+                status = false;
+            }
+        }
+    };
+
     private View.OnClickListener onSubmitClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -106,8 +143,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void onDialogSubmit() {
         new AlertDialog.Builder(MainActivity.this)
-                .setMessage("this test")
-                .setPositiveButton("Confirm", null)
+                .setMessage("Do you execute the trade ?")
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, "Transaction Successful", Toast.LENGTH_SHORT).show();
+                    }
+                })
                 .setNegativeButton("Cancel", null)
                 .create()
                 .show();

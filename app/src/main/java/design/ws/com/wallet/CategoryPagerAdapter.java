@@ -26,16 +26,12 @@ CategoryPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 Fragment_First tab1 = new Fragment_First();
                 return tab1;
-
             case 1:
-                Fragment_First tab2 = new Fragment_First();
+                Fragment_Second tab2 = new Fragment_Second();
                 return tab2;
-
-
             case 2:
                 Fragment_First tab3 = new Fragment_First();
                 return tab3;
-
             default:
                 return null;
         }

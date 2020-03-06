@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">Wallet</string>
-    <string name="activity_wallet">Reypay Wallet</string>
+    <string name="activity_wallet">Redpay Wallet</string>
     <string name="activity_username">Nobody</string>
     <string name="acitvity_money">RDP</string>
     <string name="activity_dollors">0.0 blance</string>
     <string name="activity_account">Address</string>
     <string name="activity_trans">**** **** **** 4518</string>
-    <string name="activity_button">交易</string>
+    <string name="activity_button">Send</string>
+
+    <string name="fragment_blance">Enter the blance</string>
+    <string name="fragment_address">Enter the address</string>
 </resources>
