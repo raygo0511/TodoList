@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     String isTrue;
     AutoCompleteTextView mEditBlance, mEditWalletAddress;
     SharedPreferences pref;
+    private static final int msgKey1 = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,8 +168,6 @@ public class MainActivity extends AppCompatActivity {
                 String a[] = result.split(",");
                 isTrue = (a[0]);
                 String transToken = (a[1]);
-                mEditBlance.getText().clear();
-                mEditWalletAddress.getText().clear();
                 if (isFirst) {
                     isFirst = false;
                     if (isTrue.equals("true")) {
@@ -176,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                         Bundle bundle = new Bundle();
                         bundle.putString("transToken",transToken);
                         intent.putExtras(bundle);
-                        startActivityForResult(intent, SHOW_MESSAGE) ;
+//                        startActivityForResult(intent, SHOW_MESSAGE) ;
                         startActivity(intent);
                     } else {
                         Toast.makeText(MainActivity.this, "提供交易資訊不正確", Toast.LENGTH_SHORT).show();
@@ -196,6 +197,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "提供交易資訊不正確", Toast.LENGTH_SHORT).show();
                     }
                 }
+                mEditBlance.getText().clear();
+                mEditWalletAddress.getText().clear();
+                new Thread(runnable).start();
             } catch (Exception e) {
                 Toast.makeText(MainActivity.this, "交易失敗", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
@@ -244,23 +248,91 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void onReloadCard() {
-        if (!status) {
-            status = true;
-        } else {
-            try {
-                dollers = Gomobile4wallet.fnGetBalance(result);
-                wallet_dollers.setText(dollers);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            status = false;
-        }
-    }
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            do{
+                try {
+                    Thread.sleep(1000);
+                    Message msg = new Message();
+                    msg.what = msgKey1;
+                    mHandler.sendMessage(msg);
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        onReloadCard();
-    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }while (true);
+        }
+    };
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case msgKey1:
+                    if (!status) {
+                        status = true;
+                        String origin_token = "1QGZHSDbnoieUmT5x9RwjnaDC5dWkeDjGt";
+                        String origin_dollers = "";
+                        try {
+                            origin_dollers = Gomobile4wallet.fnGetBalance(origin_token);
+                            wallet_dollers.setText(origin_dollers);
+                            wallet_account.setText(origin_token);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        status = false;
+                        try {
+                            dollers = Gomobile4wallet.fnGetBalance(result);
+                            wallet_dollers.setText(dollers);
+                            wallet_account.setText(result);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+//    private Runnable runnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            try {
+//                while (true) {
+//                    Thread.sleep(1000);
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            if (!status) {
+//                                status = true;
+//                                String origin_token = "1QGZHSDbnoieUmT5x9RwjnaDC5dWkeDjGt";
+//                                String origin_dollers = "";
+//                                try {
+//                                    origin_dollers = Gomobile4wallet.fnGetBalance(origin_token);
+//                                    wallet_dollers.setText(origin_dollers);
+//                                    wallet_account.setText(origin_token);
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                }
+//                            } else {
+//                                status = false;
+//                                try {
+//                                    dollers = Gomobile4wallet.fnGetBalance(result);
+//                                    wallet_dollers.setText(dollers);
+//                                    wallet_account.setText(result);
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        }
+//                    });
+//                }
+//            } catch (InterruptedException e) {
+//            }
+//        }
+//    };
 }
