@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:background="@drawable/white"
         android:orientation="horizontal">
 
@@ -33,10 +33,21 @@
         <customfonts.MyTextView_Roboto_Regular
             android:id="@+id/item_address"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:text="Address"
+            android:textColor="#878787"
+            android:textSize="13sp" />
+
+        <customfonts.MyTextView_Roboto_Regular
+            android:id="@+id/item_blance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="Blance"
             android:textColor="#878787"
             android:textSize="13sp" />
 
@@ -53,31 +64,4 @@
             android:textColor="#dd0000"
             android:textSize="13dp" />
     </LinearLayout>
-
-<!--    <TextView-->
-<!--        android:layout_width="200dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_weight="1"-->
-<!--        android:text="To Address : "-->
-<!--        android:gravity="center"-->
-<!--        app:srcCompat="@drawable/men" />-->
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_weight="1"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/item_goods_name"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Address" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/item_goods_price"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Data time" />-->
-<!--    </LinearLayout>-->
 </LinearLayout>

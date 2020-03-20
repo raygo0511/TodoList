@@ -1,38 +1,40 @@
 package design.ws.com.wallet;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 
-public class WalletAddressUtils implements Serializable {
-    private String mIsTrue;// 是否回傳成功
-    private String mtransAddress;// 交易wallet address
+public class WalletAddressUtils {
+    private String mTransAddress;// 交易wallet address
+    private String mTransBlance;
     private String mTimeData;
 
-    public WalletAddressUtils(String address) {
-        this.mtransAddress = address;
-    }
-
-    public String getIsTrue() {
-        return mIsTrue;
-    }
-
-    public void setIsTrue(String isTrue) {
-        this.mIsTrue = isTrue;
+    public WalletAddressUtils(String address, String blance, String time) {
+        this.mTransAddress = address;
+        this.mTransBlance = blance;
+        this.mTimeData = time;
     }
 
     public String getTransAddress() {
-        return mtransAddress;
+        return mTransAddress;
     }
 
-    public void setTransAddress(String transAddress) {
-        this.mtransAddress = transAddress;
+    public void setTransAddress(String mTransAddress) {
+        this.mTransAddress = mTransAddress;
+    }
+
+    public String getTransBlance() {
+        return mTransBlance;
+    }
+
+    public void setTransBlance(String mTransBlance) {
+        this.mTransBlance = mTransBlance;
     }
 
     public String getTimeData() {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        this.mTimeData = fmt.format(mTimeData);
         return mTimeData;
+    }
+
+    public void setTimeData(String mTimeData) {
+        this.mTimeData = mTimeData;
     }
 }

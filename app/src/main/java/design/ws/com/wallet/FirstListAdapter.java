@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,11 +20,11 @@ public class FirstListAdapter extends RecyclerView.Adapter<FirstListAdapter.View
     private String mToken;
 
     //建立建構函式
-    FirstListAdapter(Context context, List<String> data) {
+    FirstListAdapter(Context context, ArrayList<WalletAddressUtils> data) {
         //將傳遞過來的資料，賦值給本地變數
         this.context = context;//上下文
 //        this.mToken = token;
-        mDataSet = data;
+        this.walletAddressUtilsList = data;
 //        this.walletAddressUtilsList = list;
     }
 
@@ -36,25 +37,31 @@ public class FirstListAdapter extends RecyclerView.Adapter<FirstListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull FirstListAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.mItemAddress.setText(mDataSet.get(position));
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-        Date curDate = new Date(System.currentTimeMillis());
-        String time = format.format(curDate);
-        viewHolder.mItemTime.setText(time);
+        WalletAddressUtils walletAddressUtils = walletAddressUtilsList.get(position);
+        viewHolder.mItemAddress.setText(walletAddressUtils.getTransAddress());
+        viewHolder.mItemBlance.setText(walletAddressUtils.getTransBlance());
+        viewHolder.mItemTime.setText(walletAddressUtils.getTimeData());
+//        viewHolder.mItemAddress.setText(mDataSet.get(position));
+//        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+//        Date curDate = new Date(System.currentTimeMillis());
+//        String time = format.format(curDate);
+//        viewHolder.mItemTime.setText(time);
     }
 
     @Override
     public int getItemCount() {
-        return mDataSet.size();
+        return walletAddressUtilsList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mItemAddress;
+        private TextView mItemBlance;
         private TextView mItemTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mItemAddress = itemView.findViewById(R.id.item_address);
+            mItemBlance = itemView.findViewById(R.id.item_blance);
             mItemTime = itemView.findViewById(R.id.item_time);
         }
     }
@@ -77,20 +84,20 @@ public class FirstListAdapter extends RecyclerView.Adapter<FirstListAdapter.View
     }
 
     // 新增item
-    public void setData(String note) {
+    public void updataData(String note) {
         mDataSet.add(note);
         notifyDataSetChanged();
     }
 
-    public void addData(int position) {
+    public void addData(int position, WalletAddressUtils text) {
+        walletAddressUtilsList.add(position, text);
         notifyItemInserted(position);
         notifyItemRangeChanged(position, mDataSet.size());
     }
 
     // 刪除item
     public void delectData(int position) {
-        walletAddressUtilsList.remove(position);
+        mDataSet.remove(position);
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, walletAddressUtilsList.size());
     }
 }

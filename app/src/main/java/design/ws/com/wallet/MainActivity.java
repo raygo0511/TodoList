@@ -1,6 +1,5 @@
 package design.ws.com.wallet;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,14 +14,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import customfonts.MyTextView_Roboto_Bold;
@@ -46,12 +45,20 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView mEditBlance, mEditWalletAddress;
     SharedPreferences pref;
     private static final int msgKey1 = 1;
+    List<WalletAddressUtils> walletAddressUtilsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        // 判斷第二頁有無傳值回來
+        if (bundle != null && bundle.containsKey("transToken")) {
+
+        }
 
         MyTextView_Roboto_Bold wallet_title = findViewById(R.id.wallet_title);
         wallet_dollers = findViewById(R.id.wallet_dollers);
@@ -81,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTablayout() {
         //setToolbar();
-        TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
@@ -137,8 +144,11 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             String origin_token = "1QGZHSDbnoieUmT5x9RwjnaDC5dWkeDjGt";
             String origin_dollers = "";
+            String text = "";
             try {
                 origin_dollers = Gomobile4wallet.fnGetBalance(origin_token);
+//                DecimalFormat df = new DecimalFormat("#,###");
+//                text = df.format(Double.parseDouble(origin_dollers));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -168,35 +178,43 @@ public class MainActivity extends AppCompatActivity {
                 String a[] = result.split(",");
                 isTrue = (a[0]);
                 String transToken = (a[1]);
-                if (isFirst) {
-                    isFirst = false;
-                    if (isTrue.equals("true")) {
-                        Toast.makeText(MainActivity.this, "交易成功", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent();
-                        intent.setClass(MainActivity.this, SubActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("transToken",transToken);
-                        intent.putExtras(bundle);
-//                        startActivityForResult(intent, SHOW_MESSAGE) ;
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(MainActivity.this, "提供交易資訊不正確", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    if (isTrue.equals("true")) {
-                        Toast.makeText(MainActivity.this, "交易成功", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent();
-                        intent.setClass(MainActivity.this, SubActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putBoolean("update", true);
-                        bundle.putString("transToken", transToken);
-                        intent.putExtras(bundle);
-//                        startActivityForResult(intent, SHOW_MESSAGE) ;
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(MainActivity.this, "提供交易資訊不正確", Toast.LENGTH_SHORT).show();
-                    }
+                String transList[] = new String[]{account, dollers};
+                if (isTrue.equals("true")) {
+                    Toast.makeText(MainActivity.this, "交易成功", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, SubActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArray("transList", transList);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
+//                if (isFirst) {
+//                    isFirst = false;
+//                    if (isTrue.equals("true")) {
+//                        Toast.makeText(MainActivity.this, "交易成功", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent();
+//                        intent.setClass(MainActivity.this, SubActivity.class);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("transToken", transToken);
+//                        intent.putExtras(bundle);
+//                        startActivity(intent);
+//                    } else {
+//                        Toast.makeText(MainActivity.this, "提供交易資訊不正確", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    if (isTrue.equals("true")) {
+//                        Toast.makeText(MainActivity.this, "交易成功", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent();
+//                        intent.setClass(MainActivity.this, SubActivity.class);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putBoolean("update", true);
+//                        bundle.putString("transTokens", transToken);
+//                        intent.putExtras(bundle);
+//                        startActivity(intent);
+//                    } else {
+//                        Toast.makeText(MainActivity.this, "提供交易資訊不正確", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
                 mEditBlance.getText().clear();
                 mEditWalletAddress.getText().clear();
                 new Thread(runnable).start();
@@ -207,53 +225,12 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void onDialogSubmit() {
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        View mView = getLayoutInflater().inflate(R.layout.fragment_second, null);
-        final AutoCompleteTextView mEditBlance = mView.findViewById(R.id.second_Blances);
-        final AutoCompleteTextView mEditWalletAddress = mView.findViewById(R.id.second_WalletAddress);
-        mBuilder.setPositiveButton("Transaction", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String blockAddress = pref.getString("blockWallet", "not value");
-                String dollers = mEditBlance.getText().toString();
-                String account = mEditWalletAddress.getText().toString();
-
-                try {
-                    String result = Gomobile4wallet.fnNewTransaction(blockAddress, account, dollers);
-                    Log.d("測試 result", result);
-                    String a[] = result.split(",");
-                    String bool = (a[0]);
-                    String transToken = (a[1]);
-                    if (bool.equals("true")) {
-                        Toast.makeText(MainActivity.this, "交易成功", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent();
-                        intent.setClass(MainActivity.this, SubActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("transToken",transToken);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(MainActivity.this, "提供交易資訊不正確", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, "交易失敗", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-            }
-        });
-        mBuilder.setNegativeButton("Cancel", null);
-        mBuilder.setView(mView);
-        AlertDialog alertDialog = mBuilder.create();
-        alertDialog.show();
-    }
-
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
             do{
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(5000);
                     Message msg = new Message();
                     msg.what = msgKey1;
                     mHandler.sendMessage(msg);
@@ -298,41 +275,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
-//    private Runnable runnable = new Runnable() {
-//        @Override
-//        public void run() {
-//            try {
-//                while (true) {
-//                    Thread.sleep(1000);
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            if (!status) {
-//                                status = true;
-//                                String origin_token = "1QGZHSDbnoieUmT5x9RwjnaDC5dWkeDjGt";
-//                                String origin_dollers = "";
-//                                try {
-//                                    origin_dollers = Gomobile4wallet.fnGetBalance(origin_token);
-//                                    wallet_dollers.setText(origin_dollers);
-//                                    wallet_account.setText(origin_token);
-//                                } catch (Exception e) {
-//                                    e.printStackTrace();
-//                                }
-//                            } else {
-//                                status = false;
-//                                try {
-//                                    dollers = Gomobile4wallet.fnGetBalance(result);
-//                                    wallet_dollers.setText(dollers);
-//                                    wallet_account.setText(result);
-//                                } catch (Exception e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        }
-//                    });
-//                }
-//            } catch (InterruptedException e) {
-//            }
-//        }
-//    };
+
+    public String getTransTime() {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        Date curDate = new Date(System.currentTimeMillis());
+        String time = format.format(curDate);
+        return time;
+    }
 }
