@@ -91,7 +91,7 @@ public class SubActivity extends AppCompatActivity {
     };
 
     public String getTransTime() {
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date curDate = new Date(System.currentTimeMillis());
         String time = format.format(curDate);
         return time;
