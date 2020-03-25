@@ -63,7 +63,7 @@ public class SubActivity extends AppCompatActivity {
             String transBlance = transItem[1];
             String transTime = getTransTime();
             dataSet.add(new WalletAddressUtils(oldAddress, oldBlance, oldTime));
-            firstListAdapter.addData(0, new WalletAddressUtils(transAddress, transBlance, transTime));
+//            firstListAdapter.addData(0, new WalletAddressUtils(transAddress, transBlance, transTime));
         }
 
 
